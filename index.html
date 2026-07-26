@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technology and Change Part 2 - AceLingua</title>
+  <style>
+    /* ===== AceLingua Color Palette (Red, Yellow, Blue) ===== */
+    :root {
+      --al-red: #ff0000;
+      --al-pure-red: #f70000;
+      --al-school-bus-yellow: #fdc20a;
+      --al-baltic-blue: #065e93;
+      --al-white: #ffffff;
+      --al-light-grey: #f0f2f5;
+      --al-warm-grey: #e8e0d5;
+      --al-cream: #fdfaf5;
+      --al-text-dark: #1a2a3a;
+      --al-text-medium: #4a5a6a;
+      --al-shadow: rgba(6, 94, 147, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: var(--al-baltic-blue);
+      color: var(--al-text-dark);
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .presentation-wrapper {
+      max-width: 1100px;
+      width: 100%;
+      background: var(--al-white);
+      border-radius: 24px;
+      box-shadow: 0 8px 30px var(--al-shadow);
+      padding: 30px 35px;
+      position: relative;
+    }
+
+    #slides { position: relative; min-height: 400px; }
+
+    .slide {
+      display: none;
+      animation: fadeIn 0.25s ease;
+      padding: 20px 30px;
+      background: var(--al-white);
+      border-radius: 16px;
+      color: var(--al-text-dark);
+    }
+    .slide.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Slide Number Badge ===== */
+    .slide-number {
+      display: inline-block;
+      background: var(--al-baltic-blue);
+      color: var(--al-white);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 2px 12px;
+      border-radius: 30px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== Typography ===== */
+    .slide h1 {
+      font-size: 2.8rem;
+      color: var(--al-baltic-blue);
+      margin-bottom: 8px;
+    }
+    .slide h2 {
+      font-size: 2.2rem;
+      color: var(--al-baltic-blue);
+      border-bottom: 3px solid var(--al-school-bus-yellow);
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .slide h3 {
+      font-size: 1.8rem;
+      color: var(--al-baltic-blue);
+      border-bottom: 3px solid var(--al-school-bus-yellow);
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .slide h4 {
+      font-size: 1.3rem;
+      color: var(--al-baltic-blue);
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+    .slide p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 10px;
+      color: var(--al-text-dark);
+    }
+    .slide ul, .slide ol {
+      margin-left: 20px;
+      margin-bottom: 10px;
+      line-height: 1.8;
+      color: var(--al-text-dark);
+    }
+    .slide li { font-size: 1.1rem; margin-bottom: 2px; }
+    .slide strong { color: var(--al-baltic-blue); }
+    .slide em { color: var(--al-red); font-style: italic; }
+
+    .slide table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      background: var(--al-cream);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+    .slide table th {
+      background: var(--al-baltic-blue);
+      color: var(--al-white);
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 1.05rem;
+    }
+    .slide table td {
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--al-warm-grey);
+      color: var(--al-text-dark);
+      font-size: 1rem;
+    }
+    .slide table tr:last-child td { border-bottom: none; }
+
+    /* ===== Images ===== */
+    .slide img {
+      max-height: 220px;
+      width: auto;
+      margin: 10px auto;
+      border-radius: 12px;
+      border: 2px solid var(--al-school-bus-yellow);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: block;
+    }
+
+    /* ===== Cards & Boxes ===== */
+    .text-card {
+      background: var(--al-cream);
+      padding: 16px 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--al-baltic-blue);
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-height: 280px;
+      overflow-y: auto;
+      color: var(--al-text-dark);
+    }
+    .text-card strong { color: var(--al-baltic-blue); }
+
+    .tip-box {
+      background: var(--al-light-grey);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 0.95rem;
+      color: var(--al-text-medium);
+      border-left: 3px solid var(--al-school-bus-yellow);
+    }
+    .tip-box strong { color: var(--al-baltic-blue); }
+
+    .highlight-box {
+      background: #e6f0f5;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border-left: 4px solid var(--al-baltic-blue);
+      margin: 10px 0;
+    }
+    .highlight-box strong { color: var(--al-baltic-blue); }
+
+    .speaking-box {
+      background: var(--al-light-grey);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .speaking-box strong { color: var(--al-baltic-blue); }
+
+    .teacher-notes {
+      background: var(--al-cream);
+      padding: 20px 24px;
+      border-radius: 16px;
+      border: 2px solid var(--al-school-bus-yellow);
+    }
+    .teacher-notes h3 { border-bottom: 3px solid var(--al-school-bus-yellow); padding-bottom: 6px; }
+    .teacher-notes p, .teacher-notes li { color: var(--al-text-dark); }
+
+    /* ===== Gap Fill ===== */
+    .gap-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .gap-item select, .gap-item input {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 2px solid var(--al-warm-grey);
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--al-white);
+      min-width: 140px;
+    }
+    .gap-item select.correct, .gap-item input.correct {
+      border-color: var(--al-baltic-blue);
+      background: #e6f0f5;
+    }
+    .gap-item select.incorrect, .gap-item input.incorrect {
+      border-color: var(--al-pure-red);
+      background: #fdd0d0;
+    }
+    .gap-item span {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* ===== Buttons ===== */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .btn {
+      padding: 10px 28px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s ease;
+    }
+    .btn:active { transform: scale(0.96); }
+    .btn-check {
+      background: var(--al-baltic-blue);
+      color: var(--al-white);
+    }
+    .btn-check:hover { background: #044d7a; }
+    .btn-reset {
+      background: var(--al-pure-red);
+      color: var(--al-white);
+    }
+    .btn-reset:hover { background: #cc0000; }
+    .btn-nav {
+      background: var(--al-baltic-blue);
+      color: var(--al-white);
+      border: none;
+      padding: 10px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0 8px;
+      font-family: inherit;
+      font-weight: 600;
+    }
+    .btn-nav:hover { background: #044d7a; }
+    .btn-nav:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .btn-nav:disabled:hover {
+      background: var(--al-baltic-blue);
+    }
+
+    /* ===== Navigation ===== */
+    .slide-nav {
+      margin-top: 20px;
+      text-align: center;
+      padding-top: 14px;
+      border-top: 2px solid var(--al-warm-grey);
+    }
+
+    /* ===== Feedback ===== */
+    .feedback-text {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: var(--al-text-dark);
+    }
+    .feedback-text .correct { color: var(--al-baltic-blue); font-weight: 600; }
+    .feedback-text .incorrect { color: var(--al-red); }
+
+    /* ===== Writing Link Box ===== */
+    .writing-link-box {
+      background: var(--al-light-grey);
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 2px solid var(--al-school-bus-yellow);
+      text-align: center;
+      margin: 12px 0;
+    }
+    .writing-link-box a {
+      color: var(--al-baltic-blue);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+    .writing-link-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== CC License ===== */
+    .cc-license {
+      font-size: 0.85rem;
+      color: var(--al-text-medium);
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 2px solid var(--al-warm-grey);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+    .cc-license a {
+      color: var(--al-baltic-blue);
+      text-decoration: none;
+    }
+    .cc-license a:hover { text-decoration: underline; }
+    .cc-license img {
+      max-width: 1.5em;
+      max-height: 1.5em;
+      margin-left: 0.1em;
+      margin-right: 0.1em;
+      border: none;
+      display: inline;
+      vertical-align: middle;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 700px) {
+      .presentation-wrapper { padding: 16px; }
+      .slide { padding: 14px 18px; }
+      .slide h1 { font-size: 2rem; }
+      .slide h2 { font-size: 1.6rem; }
+      .slide p, .slide li, .gap-item span { font-size: 0.95rem; }
+      .slide img { max-height: 150px; }
+      .gap-item { flex-direction: column; align-items: stretch; }
+      .gap-item select, .gap-item input { min-width: auto; }
+      .btn-row { flex-direction: column; }
+      .btn { width: 100%; text-align: center; }
+      .cc-license { font-size: 0.7rem; }
+      .cc-license img { max-width: 1.2em; max-height: 1.2em; }
+      .slide-number { font-size: 0.7rem; }
+      .writing-link-box a { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="presentation-wrapper">
+  <div id="slides">
+
+    <!-- ===== SLIDE 1: TITLE ===== -->
+    <section class="slide active">
+      <div class="slide-number">Slide 1</div>
+      <h1>Technology and Change Part 2</h1>
+      <h2 style="border-bottom: none; font-size: 1.8rem; color: var(--al-text-medium);">Has Technology Made a Positive Contribution to Sport Today?</h2>
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/Sportstech.png" alt="Technology and sport concept">
+      <p style="font-size: 1.3rem; color: var(--al-text-medium);">B2 AceLingua</p>
+      <div style="background: var(--al-cream); padding: 16px 20px; border-radius: 12px; margin: 12px 0; border-left: 4px solid var(--al-baltic-blue);">
+        <p style="font-size: 1.1rem;"><strong>Aims:</strong></p>
+        <ul>
+          <li>Analyse essay structure and use of linking devices</li>
+          <li>Review comparative structures and articles</li>
+          <li>Practise key word transformation and word formation</li>
+          <li>Prepare for and complete B2 First essay on technology in sport</li>
+        </ul>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev" disabled>Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 2: MODEL ESSAY ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 2</div>
+      <h2>Reading: Model Essay</h2>
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/SporteTechCollage.png" alt="Sports technology collage">
+      <div style="background: var(--al-cream); padding: 14px 18px; border-radius: 8px; font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px; max-height: 220px; overflow-y: auto;">
+        <p style="font-weight: 600; color: var(--al-baltic-blue);">Has technology made a positive contribution to sport today?</p>
+        <p>The role of technology in modern sport is a topic of much debate. While some argue it detracts from the human element of sport, I believe that technology has made a largely positive contribution to sport today.</p>
+        <p>Firstly, technology has significantly improved athletic performance. Advanced training equipment, wearable devices, and data analytics allow athletes to monitor their progress and optimise their training. This has led to faster times, higher jumps, and better overall results.</p>
+        <p>Secondly, technology has enhanced refereeing decisions. Systems like VAR in football and Hawk-Eye in tennis have reduced human error and ensured fairer outcomes. Although these systems are not perfect, they have made matches more just and transparent.</p>
+        <p>Finally, technology has improved the spectator experience. High-definition broadcasts, instant replays, and virtual reality have brought fans closer to the action. This has increased engagement and made sport more accessible to a global audience.</p>
+        <p>In conclusion, while technology presents some challenges, its benefits to performance, fairness, and fan engagement are clear. I believe that technology has indeed made a positive contribution to sport today.</p>
+      </div>
+      <div style="background: var(--al-light-grey); padding: 10px 14px; border-radius: 8px; border-left: 4px solid var(--al-school-bus-yellow);">
+        <p style="font-size: 1rem;"><strong>Discussion Questions:</strong></p>
+        <ul style="font-size: 0.95rem; line-height: 1.6;">
+          <li>What is the writer's own idea in the model answer?</li>
+          <li>Why is this essay called "balanced"?</li>
+          <li>What is the purpose of each paragraph?</li>
+        </ul>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 3: LINKING DEVICES ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 3</div>
+      <h2>Linking Devices</h2>
+      <p style="font-size: 1.05rem; margin-bottom: 8px;">Add the underlined linking expressions from the model essay to the table below.</p>
+      <table style="font-size: 0.95rem;">
+        <thead>
+          <tr><th style="font-size: 1rem;">Function</th><th style="font-size: 1rem;">Linking Devices</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Introducing one side</strong></td><td><em>Some people feel</em></td></tr>
+          <tr><td><strong>Introducing the other side</strong></td><td>_____</td></tr>
+          <tr><td><strong>Making additional points</strong></td><td>_____</td></tr>
+          <tr><td><strong>Introducing a result</strong></td><td>_____</td></tr>
+          <tr><td><strong>Concluding</strong></td><td>_____</td></tr>
+        </tbody>
+      </table>
+      <div style="background: var(--al-light-grey); padding: 10px 14px; border-radius: 8px; margin-top: 8px;">
+        <p style="font-size: 0.95rem;"><strong>Add these linking devices to the table:</strong></p>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;">
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">In addition (to this)</span>
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">Consequently</span>
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">On balance</span>
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">On the one hand</span>
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">Furthermore</span>
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">To sum up</span>
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">Moreover</span>
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">As a result</span>
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">Firstly/Secondly/Finally</span>
+          <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">On the other hand</span>
+        </div>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 4: SPEAKING PART 3 ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 4</div>
+      <h2>Speaking Part 3: Discussion</h2>
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/Debate1.png" alt="People discussing technology in sport">
+      <div style="background: var(--al-light-grey); padding: 16px 20px; border-radius: 12px; margin: 10px 0;">
+        <p style="font-size: 1.1rem;"><strong>Task:</strong> Your class has been discussing the role of information and communications technology in today's world.</p>
+        <p style="font-size: 1.1rem; font-weight: 600; color: var(--al-baltic-blue); margin: 8px 0;">Do we really need the internet to enjoy life to the full?</p>
+        <p style="font-size: 1rem;"><strong>Brainstorm ideas for:</strong></p>
+        <ul style="font-size: 1rem; line-height: 1.6;">
+          <li><strong>Friendships</strong> – positive and negative effects</li>
+          <li><strong>Entertainment</strong> – positive and negative effects</li>
+          <li><strong>Your own idea</strong> (reference material, shopping, working at home, health)</li>
+        </ul>
+      </div>
+      <div class="tip-box">
+        <p style="font-size: 1rem;"><strong>Useful language:</strong> <em>"On the one hand..."</em> / <em>"On the other hand..."</em> / <em>"Furthermore..."</em></p>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 5: ESSAY PLANNING ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 5</div>
+      <h2>Essay Planning</h2>
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/Brainstorming.png" alt="Brainstorming and planning visual">
+      <div style="background: var(--al-cream); padding: 16px 20px; border-radius: 12px; border-left: 4px solid var(--al-baltic-blue); margin: 10px 0;">
+        <p style="font-size: 1.05rem;"><strong>How to go about it:</strong></p>
+        <ol style="font-size: 1rem; line-height: 1.7;">
+          <li><strong>Plan:</strong> For each of the three points, make a list of relevant ideas.</li>
+          <li><strong>Select:</strong> From your lists, choose the points you want to include.</li>
+          <li><strong>Develop:</strong> Make notes, developing your ideas with reasons and examples.</li>
+          <li><strong>Organise:</strong> Decide how you will introduce and conclude your essay.</li>
+          <li><strong>Write:</strong> Use paragraphs and linking devices. Write in a formal/neutral style.</li>
+          <li><strong>Check:</strong> Review grammar, vocabulary, spelling and punctuation.</li>
+        </ol>
+      </div>
+      <div class="tip-box">
+        <p style="font-size: 1rem;"><strong>Remember:</strong> A balanced essay presents both sides of the argument before reaching a conclusion.</p>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 6: COMPARISONS REVIEW ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 6</div>
+      <h2>Comparisons Review</h2>
+      <p style="font-size: 1.05rem; margin-bottom: 8px;">Complete each gap in the paragraph with a word from the box.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; background: var(--al-light-grey); padding: 8px 12px; border-radius: 8px;">
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">by</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">in</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">less</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">little</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">lot</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">many</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">more</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">most</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">much</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">nearly</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">of</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">so</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">such</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">the</span>
+        <span style="background: var(--al-white); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--al-warm-grey); font-size: 0.9rem;">to</span>
+      </div>
+      <div id="comparisonsGap"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkComparisons">Check Answers</button>
+        <button class="btn btn-reset" id="resetComparisons">Reset</button>
+      </div>
+      <div class="feedback-text" id="comparisonsFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 7: ARTICLES REVIEW ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 7</div>
+      <h2>Articles Review</h2>
+      <p style="font-size: 1.05rem; margin-bottom: 8px;">Each numbered line has one mistake in the use of articles. Add, change or delete an article where necessary. The first two have been done for you.</p>
+      <div style="background: var(--al-cream); padding: 14px 18px; border-radius: 8px; font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px;">
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">1</span> Is it always <span style="text-decoration: line-through;">a</span> good idea to introduce changes into our lives?</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">2</span> Some people feel that change is positive and enjoy doing things in <span style="color: var(--al-red);">the</span> different ways.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">3</span> Others, however, prefer a stability and avoid change as much as possible.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">4</span> One advantage of altering way you do things is that it gives you the chance to make improvements.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">5</span> It enables you to become better student, employee or person.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">6</span> It helps you decide which is a best one.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">7</span> Another positive aspect is that it adds variety to the life.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">8</span> This also helps to make you the more dynamic and interesting.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">9</span> On a negative side, change can be stressful.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">10</span> For this reason, the many people like to stay in same place all the time.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">11</span> They prefer familiarity to uncertainty.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">12</span> In the conclusion, I think it is easier to introduce changes when you are young.</p>
+        <p><span style="background: var(--al-school-bus-yellow); padding: 0 4px;">13</span> Older you are, the more of effort it takes to do things differently.</p>
+      </div>
+      <div id="articlesCorrection"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkArticles">Check Answers</button>
+        <button class="btn btn-reset" id="resetArticles">Reset</button>
+      </div>
+      <div class="feedback-text" id="articlesFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 8: KEY WORD TRANSFORMATION ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 8</div>
+      <h2>Key Word Transformation</h2>
+      <p style="font-size: 1.05rem; margin-bottom: 8px;">Complete the second sentence so that it has a similar meaning to the first sentence, using the word given. Use between two and five words.</p>
+      <div id="keyWordTransform"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkKWT">Check Answers</button>
+        <button class="btn btn-reset" id="resetKWT">Reset</button>
+      </div>
+      <div class="feedback-text" id="kwtFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 9: WORD FORMATION ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 9</div>
+      <h2>Word Formation</h2>
+      <p style="font-size: 1.05rem; margin-bottom: 8px;">Use the word given in capitals to form a word that fits in the space. Write your answers IN CAPITAL LETTERS.</p>
+      <div style="background: var(--al-cream); padding: 14px 18px; border-radius: 8px; font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px; max-height: 220px; overflow-y: auto;">
+        <p style="font-weight: 600; color: var(--al-baltic-blue);">Michael Hart</p>
+        <p>Michael Hart (1947–2011) was the <strong>(0) FOUNDER</strong> (FOUND) of Project Gutenberg, one of the <strong>(1) _____</strong> (EARLY) and longest-lasting online literary projects. His life's aim was to digitise the world's literature and make it freely available online. As a result of his work, he is widely considered to be the <strong>(2) _____</strong> (INVENT) of the eBook.</p>
+        <p>In 1971, Hart typed a copy of the United States Declaration of Independence into the computer at the University of Illinois, where he was a student. The internet was used only by academic and military <strong>(3) _____</strong> (RESEARCH): the World Wide Web would not come into <strong>(4) _____</strong> (EXIST) for another two decades. Yet Hart spent the next fifteen or so years typing up historic texts such as the works of Shakespeare and the American Constitution, using <strong>(5) _____</strong> (EQUIP) he had begged, borrowed or made himself. In 1987, with over 300 books in the online <strong>(6) _____</strong> (COLLECT), he took on an <strong>(7) _____</strong> (ASSIST), and together they recruited volunteers worldwide to help with typing and proofreading <strong>(8) _____</strong> (RESPONSIBLE). Project Gutenberg now offers more than 60,000 free eBooks to download in over 60 different languages.</p>
+      </div>
+      <div id="wordFormation"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkWF">Check Answers</button>
+        <button class="btn btn-reset" id="resetWF">Reset</button>
+      </div>
+      <div class="feedback-text" id="wfFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 10: WRITING ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 10</div>
+      <h2>B2 First: Technology in Sport</h2>
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/TechLife.png" alt="Writing workspace with essay draft">
+      <div style="background: var(--al-light-grey); padding: 14px 18px; border-radius: 12px; margin: 10px 0;">
+        <p style="font-size: 1.05rem;"><strong>Instructions:</strong> Write an essay of <strong>140–190 words</strong> in response to the prompt below.</p>
+        <ul style="font-size: 0.95rem; line-height: 1.6;">
+          <li>Include an introduction and a conclusion.</li>
+          <li>Address all three points in the notes.</li>
+          <li>Use formal, academic language.</li>
+          <li>You have <strong>40 minutes</strong> to complete this task.</li>
+        </ul>
+      </div>
+      <div style="background: var(--al-cream); padding: 14px 18px; border-radius: 12px; border-left: 4px solid var(--al-baltic-blue);">
+        <p style="font-size: 1.1rem; font-weight: 600; color: var(--al-baltic-blue);">Essay Prompt</p>
+        <p style="font-size: 1.1rem; font-style: italic;">"Has technology made a positive contribution to sport today?"</p>
+        <p style="font-size: 1rem;"><strong>Write about:</strong></p>
+        <ol style="font-size: 0.95rem; line-height: 1.6;">
+          <li>the use of technology to improve performance</li>
+          <li>the use of technology in refereeing decisions</li>
+          <li>(your own idea)</li>
+        </ol>
+      </div>
+      <div class="writing-link-box">
+        <p style="font-size: 1rem; margin-bottom: 4px;">Complete your essay here:</p>
+        <a href="https://ingleslibre.github.io/B2-First-Writing-Tech/" target="_blank">https://ingleslibre.github.io/B2-First-Writing-Tech/</a>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 11: REVIEW ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 11</div>
+      <h2>Review: Comparisons and Articles</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <div style="flex: 1; min-width: 200px; background: var(--al-cream); padding: 12px 16px; border-radius: 8px;">
+          <p style="font-weight: 600; color: var(--al-baltic-blue);">Comparative Structures</p>
+          <ul style="font-size: 0.95rem; line-height: 1.6;">
+            <li><strong>One syllable:</strong> <em>fast</em> → <em>faster</em></li>
+            <li><strong>Two syllables (-y):</strong> <em>heavy</em> → <em>heavier</em></li>
+            <li><strong>Two+ syllables:</strong> <em>expensive</em> → <em>more expensive</em></li>
+            <li><strong>Irregular:</strong> <em>good</em> → <em>better</em></li>
+            <li><strong>as...as:</strong> <em>as fast as</em></li>
+            <li><strong>the + comparative, the + comparative:</strong> <em>the more, the better</em></li>
+          </ul>
+        </div>
+        <div style="flex: 1; min-width: 200px; background: var(--al-cream); padding: 12px 16px; border-radius: 8px;">
+          <p style="font-weight: 600; color: var(--al-baltic-blue);">Article Rules</p>
+          <ul style="font-size: 0.95rem; line-height: 1.6;">
+            <li><strong>a/an:</strong> singular countable nouns (first mention)</li>
+            <li><strong>the:</strong> specific nouns, superlatives, unique things</li>
+            <li><strong>(no article):</strong> plural/general nouns, abstract nouns, meals, most place names</li>
+          </ul>
+        </div>
+      </div>
+      <div style="background: var(--al-light-grey); padding: 12px 16px; border-radius: 8px; margin-top: 10px;">
+        <p style="font-size: 1rem;"><strong>Quick Practice:</strong> Correct these sentences:</p>
+        <ul style="font-size: 0.95rem; line-height: 1.6;">
+          <li><em>She is more taller than me.</em> → __________</li>
+          <li><em>I have a apple.</em> → __________</li>
+        </ul>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 12: SPEAKING PART 4 ===== -->
+    <section class="slide">
+      <div class="slide-number">Slide 12</div>
+      <h2>Speaking Part 4: Discussion</h2>
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/DebateGroup.png" alt="Group discussion about technology in sport">
+      <div style="background: var(--al-light-grey); padding: 16px 20px; border-radius: 12px; margin: 10px 0;">
+        <p style="font-size: 1.05rem;"><strong>Work in pairs. Discuss these questions:</strong></p>
+        <ol style="font-size: 1rem; line-height: 1.8;">
+          <li>Is technology making sport more or less enjoyable to watch?</li>
+          <li>Should technology be limited in sport to preserve the human element?</li>
+          <li>What changes would you like to see in sport in the next ten years?</li>
+          <li>Do you think technology gives some athletes an unfair advantage?</li>
+          <li>How important is fairness in sport compared to entertainment?</li>
+        </ol>
+      </div>
+      <div class="tip-box">
+        <p style="font-size: 1rem;"><strong>Useful language:</strong> <em>"I would argue that..."</em> / <em>"On balance..."</em> / <em>"What I find interesting is..."</em></p>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 13: TEACHER NOTES ===== -->
+    <section class="slide teacher-notes">
+      <div class="slide-number">Slide 13</div>
+      <h3>Technology and Change Part 2 - Teacher Notes</h3>
+      <h4>Aims</h4>
+      <ul>
+        <li>Analyse essay structure and use of linking devices</li>
+        <li>Review comparative structures and articles</li>
+        <li>Practise key word transformation and word formation</li>
+        <li>Prepare for and complete B2 First essay on technology in sport</li>
+      </ul>
+      <h4>Timing</h4>
+      <p>120 minutes (2 hours)</p>
+      <h4>Procedure</h4>
+      <ol>
+        <li><strong>Introduction and Model Essay (12 min):</strong> Read and analyse the model essay. Discuss the questions.</li>
+        <li><strong>Linking Devices (10 min):</strong> Complete the table and add the linking devices.</li>
+        <li><strong>Speaking Part 3 (10 min):</strong> Discuss the internet and enjoyment of life. Brainstorm ideas.</li>
+        <li><strong>Essay Planning (8 min):</strong> Review the planning steps.</li>
+        <li><strong>Comparisons Review (10 min):</strong> Complete the gap-fill and check answers.</li>
+        <li><strong>Articles Review (10 min):</strong> Correct the article mistakes.</li>
+        <li><strong>Key Word Transformation (10 min):</strong> Complete the sentences.</li>
+        <li><strong>Word Formation (10 min):</strong> Form the nouns from the given words.</li>
+        <li><strong>Writing (20 min):</strong> Students write the essay on the linked page.</li>
+        <li><strong>Speaking Part 4 (10 min):</strong> Discuss the questions in pairs.</li>
+      </ol>
+      <h4>Answers</h4>
+      <p><strong>Comparisons Review (Slide 6):</strong> 1-the, 2-most, 3-in, 4-many, 5-much, 6-so, 7-lot, 8-nearly, 9-by, 10-less</p>
+      <p><strong>Articles Review (Slide 7):</strong> 3-delete "a", 4-add "the" before "way", 5-add "a" before "better", 6-change "a" to "the", 7-delete "the" before "life", 8-delete "the" before "more", 9-change "a" to "the", 10-delete "the" before "many", 12-delete "the" before "conclusion", 13-add "The" before "older", delete "of" before "effort"</p>
+      <p><strong>Key Word Transformation (Slide 8):</strong> 1-is much bigger than, 2-are not as many, 3-the more/the less, 4-is the same height as, 5-has made more of</p>
+      <p><strong>Word Formation (Slide 9):</strong> 1-EARLIEST, 2-INVENTOR, 3-RESEARCHERS, 4-EXISTENCE, 5-EQUIPMENT, 6-COLLECTION, 7-ASSISTANT, 8-RESPONSIBILITIES</p>
+      <h4>Checking Questions</h4>
+      <ul>
+        <li>What makes a good essay introduction?</li>
+        <li>How do linking devices improve an essay?</li>
+        <li>When do we use "the" vs "a/an"?</li>
+        <li>How do we form comparative adjectives?</li>
+      </ul>
+      <h4>Likely Errors</h4>
+      <ul>
+        <li>Using "more better" instead of "better"</li>
+        <li>Omitting articles or using the wrong one</li>
+        <li>Using informal language in essays</li>
+        <li>Forgetting to address all three points</li>
+      </ul>
+      <h4>Extension Ideas</h4>
+      <ul>
+        <li>Students write a second essay on a different topic</li>
+        <li>Peer review of essays using the checklist</li>
+        <li>Debate: Is technology in sport a good thing?</li>
+      </ul>
+
+      <!-- ===== CC LICENSE ===== -->
+      <div class="cc-license">
+        <a href="https://example.com">ESL Classroom resources</a> © 1999 by <a href="https://example.com">InglesLibrePe@gmail.com</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>
+        <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="Creative Commons">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="Attribution">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="ShareAlike">
+      </div>
+
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next" disabled>Next</button>
+      </div>
+    </section>
+
+  </div><!-- end #slides -->
+</div><!-- end .presentation-wrapper -->
+
+<script>
+  (function() {
+    // ===== SLIDE NAVIGATION =====
+    function initNavigation() {
+      var slides = document.querySelectorAll('.slide');
+      var total = slides.length;
+      var current = 0;
+      slides.forEach(function(s, i) { if (s.classList.contains('active')) current = i; });
+
+      function goTo(index) {
+        if (index < 0 || index >= total) return;
+        slides.forEach(function(s) { s.classList.remove('active'); });
+        slides[index].classList.add('active');
+        current = index;
+        var prevBtns = document.querySelectorAll('.slide-prev');
+        var nextBtns = document.querySelectorAll('.slide-next');
+        prevBtns.forEach(function(b) { b.disabled = (current === 0); });
+        nextBtns.forEach(function(b) { b.disabled = (current === total - 1); });
+      }
+
+      document.querySelectorAll('.slide-prev').forEach(function(b) {
+        b.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (current > 0) goTo(current - 1);
+        });
+      });
+      document.querySelectorAll('.slide-next').forEach(function(b) {
+        b.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (current < total - 1) goTo(current + 1);
+        });
+      });
+      var prevBtns = document.querySelectorAll('.slide-prev');
+      var nextBtns = document.querySelectorAll('.slide-next');
+      prevBtns.forEach(function(b) { b.disabled = (current === 0); });
+      nextBtns.forEach(function(b) { b.disabled = (current === total - 1); });
+    }
+
+    // ===== COMPARISONS GAP-FILL =====
+    function initComparisons() {
+      var container = document.getElementById('comparisonsGap');
+      var correctAnswers = ['the', 'most', 'in', 'many', 'much', 'so', 'lot', 'nearly', 'by', 'less'];
+      var options = ['by', 'in', 'less', 'little', 'lot', 'many', 'more', 'most', 'much', 'nearly', 'of', 'so', 'such', 'the', 'to'];
+      var selects = [];
+
+      var textParts = [
+        'Max has changed since our days at school together. The older he gets, (1) ',
+        ' sociable he seems to be. He was never the (2) ',
+        ' confident boy (3) ',
+        ' the class and he didn\'t have as (4) ',
+        ' friends as he probably would like to have had. But he\'s (5) ',
+        ' less reserved now, and not (6) ',
+        ' as nervous. Physically, he\'s different as well. He\'s quite a (7) ',
+        ' larger than he used to be and not (8) ',
+        ' pale and sickly looking. In those days he was (9) ',
+        ' far the thinnest of my friends, but he\'s put on a bit of weight and he looks (10) ',
+        ' delicate now.'
+      ];
+
+      container.innerHTML = '';
+
+      var blankIndex = 0;
+      for (var i = 0; i < textParts.length; i++) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'gap-item';
+
+        var textSpan = document.createElement('span');
+        textSpan.innerHTML = textParts[i];
+        wrapper.appendChild(textSpan);
+
+        if (i < textParts.length - 1) {
+          var select = document.createElement('select');
+          select.id = 'comp_' + blankIndex;
+
+          var opt = document.createElement('option');
+          opt.value = '';
+          opt.textContent = 'Select...';
+          select.appendChild(opt);
+
+          var shuffled = options.slice();
+          for (var j = shuffled.length - 1; j > 0; j--) {
+            var k = Math.floor(Math.random() * (j + 1));
+            var temp = shuffled[j];
+            shuffled[j] = shuffled[k];
+            shuffled[k] = temp;
+          }
+
+          shuffled.forEach(function(word) {
+            var opt2 = document.createElement('option');
+            opt2.value = word;
+            opt2.textContent = word;
+            select.appendChild(opt2);
+          });
+
+          selects.push(select);
+          wrapper.appendChild(select);
+          blankIndex++;
+        }
+
+        container.appendChild(wrapper);
+      }
+
+      document.getElementById('checkComparisons').addEventListener('click', function() {
+        var correct = 0;
+        selects.forEach(function(sel, idx) {
+          if (sel.value === correctAnswers[idx]) {
+            correct++;
+            sel.className = 'correct';
+          } else {
+            sel.className = 'incorrect';
+          }
+        });
+        var fb = document.getElementById('comparisonsFeedback');
+        fb.innerHTML = '<p>You got <strong>' + correct + '</strong> out of 10 correct.</p>';
+        fb.style.display = 'block';
+        if (correct === 10) {
+          fb.innerHTML += '<p style="color:#065e93;font-weight:600;">Perfect!</p>';
+        }
+      });
+
+      document.getElementById('resetComparisons').addEventListener('click', function() {
+        selects.forEach(function(sel) {
+          sel.value = '';
+          sel.className = '';
+        });
+        document.getElementById('comparisonsFeedback').innerHTML = '';
+        document.getElementById('comparisonsFeedback').style.display = 'none';
+      });
+    }
+
+    // ===== ARTICLES CORRECTION =====
+    function initArticles() {
+      var container = document.getElementById('articlesCorrection');
+      var sentences = [
+        { num: 3, text: 'Others, however, prefer a stability and avoid change as much as possible.' },
+        { num: 4, text: 'One advantage of altering way you do things is that it gives you the chance to make improvements.' },
+        { num: 5, text: 'It enables you to become better student, employee or person.' },
+        { num: 6, text: 'It helps you decide which is a best one.' },
+        { num: 7, text: 'Another positive aspect is that it adds variety to the life.' },
+        { num: 8, text: 'This also helps to make you the more dynamic and interesting.' },
+        { num: 9, text: 'On a negative side, change can be stressful.' },
+        { num: 10, text: 'For this reason, the many people like to stay in same place all the time.' },
+        { num: 12, text: 'In the conclusion, I think it is easier to introduce changes when you are young.' },
+        { num: 13, text: 'Older you are, the more of effort it takes to do things differently.' }
+      ];
+      var inputs = [];
+
+      container.innerHTML = '';
+
+      sentences.forEach(function(s, idx) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'gap-item';
+
+        var numSpan = document.createElement('span');
+        numSpan.textContent = s.num + '. ';
+        numSpan.style.fontWeight = '600';
+        numSpan.style.color = 'var(--al-baltic-blue)';
+        wrapper.appendChild(numSpan);
+
+        var textSpan = document.createElement('span');
+        textSpan.textContent = s.text;
+        wrapper.appendChild(textSpan);
+
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.id = 'art_' + idx;
+        input.placeholder = 'Corrected version...';
+        input.style.minWidth = '300px';
+        inputs.push(input);
+        wrapper.appendChild(input);
+
+        container.appendChild(wrapper);
+      });
+
+      document.getElementById('checkArticles').addEventListener('click', function() {
+        var fb = document.getElementById('articlesFeedback');
+        fb.innerHTML = '<p>Check your answers against the teacher notes (Slide 13).</p>';
+        fb.style.display = 'block';
+      });
+
+      document.getElementById('resetArticles').addEventListener('click', function() {
+        inputs.forEach(function(inp) {
+          inp.value = '';
+        });
+        document.getElementById('articlesFeedback').innerHTML = '';
+        document.getElementById('articlesFeedback').style.display = 'none';
+      });
+    }
+
+    // ===== KEY WORD TRANSFORMATION =====
+    function initKWT() {
+      var container = document.getElementById('keyWordTransform');
+      var prompts = [
+        { text: '1. The new version of this phone isn\'t nearly as big as I thought it would be.<br><strong>MUCH</strong><br>The new version of this phone _____ I thought it would be.', correct: 'is much bigger than' },
+        { text: '2. There are fewer teachers in my school than there were last year.<br><strong>NOT</strong><br>There _____ teachers in my school as there were last year.', correct: 'are not as many' },
+        { text: '3. If you work harder now, you won\'t have to do so much later.<br><strong>THE</strong><br>The harder _____ you\'ll have to do later.', correct: 'you work now/the less' },
+        { text: '4. Lucy is as tall as her mother.<br><strong>HEIGHT</strong><br>Lucy _____ her mother.', correct: 'is the same height as' },
+        { text: '5. Technology has had a bigger effect on our lives than we could ever have imagined.<br><strong>MORE</strong><br>Technology has _____ a difference to our lives than we could ever have imagined.', correct: 'made more of' }
+      ];
+      var inputs = [];
+
+      container.innerHTML = '';
+
+      prompts.forEach(function(prompt, idx) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'gap-item';
+
+        var textSpan = document.createElement('span');
+        textSpan.innerHTML = prompt.text;
+        wrapper.appendChild(textSpan);
+
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.id = 'kwt_' + idx;
+        input.placeholder = 'Type your answer (2-5 words)...';
+        input.style.minWidth = '300px';
+        inputs.push(input);
+        wrapper.appendChild(input);
+
+        container.appendChild(wrapper);
+      });
+
+      document.getElementById('checkKWT').addEventListener('click', function() {
+        var correct = 0;
+        inputs.forEach(function(inp, idx) {
+          var answer = inp.value.trim().toLowerCase();
+          var expected = prompts[idx].correct.toLowerCase();
+          // Handle multiple possible answers for #3
+          if (idx === 2) {
+            if (answer === 'you work now the less' || answer === 'you work now, the less') {
+              correct++;
+              inp.className = 'correct';
+            } else {
+              inp.className = 'incorrect';
+            }
+          } else if (answer === expected) {
+            correct++;
+            inp.className = 'correct';
+          } else {
+            inp.className = 'incorrect';
+          }
+        });
+        var fb = document.getElementById('kwtFeedback');
+        fb.innerHTML = '<p>You got <strong>' + correct + '</strong> out of 5 correct.</p>';
+        fb.style.display = 'block';
+        if (correct === 5) {
+          fb.innerHTML += '<p style="color:#065e93;font-weight:600;">Perfect!</p>';
+        }
+      });
+
+      document.getElementById('resetKWT').addEventListener('click', function() {
+        inputs.forEach(function(inp) {
+          inp.value = '';
+          inp.className = '';
+        });
+        document.getElementById('kwtFeedback').innerHTML = '';
+        document.getElementById('kwtFeedback').style.display = 'none';
+      });
+    }
+
+    // ===== WORD FORMATION =====
+    function initWF() {
+      var container = document.getElementById('wordFormation');
+      var correctAnswers = ['EARLIEST', 'INVENTOR', 'RESEARCHERS', 'EXISTENCE', 'EQUIPMENT', 'COLLECTION', 'ASSISTANT', 'RESPONSIBILITIES'];
+      var inputs = [];
+
+      container.innerHTML = '';
+
+      for (var i = 1; i <= 8; i++) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'gap-item';
+
+        var numSpan = document.createElement('span');
+        numSpan.textContent = i + '. ';
+        numSpan.style.fontWeight = '600';
+        numSpan.style.color = 'var(--al-baltic-blue)';
+        wrapper.appendChild(numSpan);
+
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.id = 'wf_' + i;
+        input.placeholder = 'Type in CAPITAL LETTERS...';
+        input.style.minWidth = '180px';
+        inputs.push(input);
+        wrapper.appendChild(input);
+
+        container.appendChild(wrapper);
+      }
+
+      document.getElementById('checkWF').addEventListener('click', function() {
+        var correct = 0;
+        inputs.forEach(function(inp, idx) {
+          var answer = inp.value.trim().toUpperCase();
+          if (answer === correctAnswers[idx]) {
+            correct++;
+            inp.className = 'correct';
+          } else {
+            inp.className = 'incorrect';
+          }
+        });
+        var fb = document.getElementById('wfFeedback');
+        fb.innerHTML = '<p>You got <strong>' + correct + '</strong> out of 8 correct.</p>';
+        fb.style.display = 'block';
+        if (correct === 8) {
+          fb.innerHTML += '<p style="color:#065e93;font-weight:600;">Perfect!</p>';
+        }
+      });
+
+      document.getElementById('resetWF').addEventListener('click', function() {
+        inputs.forEach(function(inp) {
+          inp.value = '';
+          inp.className = '';
+        });
+        document.getElementById('wfFeedback').innerHTML = '';
+        document.getElementById('wfFeedback').style.display = 'none';
+      });
+    }
+
+    // ===== INIT =====
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        initNavigation();
+        initComparisons();
+        initArticles();
+        initKWT();
+        initWF();
+      });
+    } else {
+      initNavigation();
+      initComparisons();
+      initArticles();
+      initKWT();
+      initWF();
+    }
+  })();
+</script>
+</body>
+</html>
