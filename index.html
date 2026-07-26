@@ -270,8 +270,8 @@
       background: #fdd0d0;
     }
     .drop-zones {
-      flex: 1;
-      min-width: 220px;
+      flex: 2;
+      min-width: 280px;
     }
     .drop-zone {
       background: var(--al-cream);
@@ -279,14 +279,15 @@
       border-radius: 8px;
       margin-bottom: 6px;
       border: 2px dashed var(--al-warm-grey);
-      min-height: 50px;
+      min-height: 55px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
+      gap: 6px;
       font-size: 0.95rem;
       color: var(--al-text-medium);
       transition: all 0.2s;
-      text-align: center;
+      text-align: left;
     }
     .drop-zone.drag-over {
       border-color: var(--al-baltic-blue);
@@ -307,18 +308,19 @@
       border-color: var(--al-pure-red);
       background: #fdd0d0;
     }
+    .drop-zone .zone-label {
+      font-weight: 600;
+      color: var(--al-baltic-blue);
+      margin-right: 8px;
+    }
 
     /* ===== Article Dropdown ===== */
-    .article-line {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-      flex-wrap: wrap;
-      font-size: 0.95rem;
-      line-height: 1.6;
+    .article-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 10px;
     }
-    .article-line select {
+    .article-text select {
       padding: 2px 6px;
       border-radius: 4px;
       border: 2px solid var(--al-warm-grey);
@@ -327,18 +329,13 @@
       background: var(--al-white);
       min-width: 100px;
     }
-    .article-line select.correct {
+    .article-text select.correct {
       border-color: var(--al-baltic-blue);
       background: #e6f0f5;
     }
-    .article-line select.incorrect {
+    .article-text select.incorrect {
       border-color: var(--al-pure-red);
       background: #fdd0d0;
-    }
-    .article-line .num-label {
-      font-weight: 600;
-      color: var(--al-baltic-blue);
-      min-width: 28px;
     }
 
     /* ===== Word Formation Grid ===== */
@@ -492,7 +489,7 @@
       .writing-link-box a { font-size: 1rem; }
       .drag-container { flex-direction: column; }
       .wf-grid { grid-template-columns: 1fr; }
-      .article-line { flex-wrap: wrap; }
+      .drop-zones { min-width: auto; }
     }
   </style>
 </head>
@@ -549,7 +546,7 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 3: DRAG AND DROP LINKING DEVICES ===== -->
+    <!-- ===== SLIDE 3: DRAG AND DROP LINKING DEVICES (Expanded) ===== -->
     <section class="slide">
       <div class="slide-number">Slide 3</div>
       <h2>Linking Devices: Drag and Drop</h2>
@@ -568,11 +565,11 @@
           <div draggable="true" data-device="on the other hand">On the other hand</div>
         </div>
         <div class="drop-zones" id="dropZones">
-          <div class="drop-zone" data-category="one side">Introducing one side</div>
-          <div class="drop-zone" data-category="other side">Introducing the other side</div>
-          <div class="drop-zone" data-category="additional">Making additional points</div>
-          <div class="drop-zone" data-category="result">Introducing a result</div>
-          <div class="drop-zone" data-category="concluding">Concluding</div>
+          <div class="drop-zone" data-category="one side"><span class="zone-label">Introducing one side:</span></div>
+          <div class="drop-zone" data-category="other side"><span class="zone-label">Introducing the other side:</span></div>
+          <div class="drop-zone" data-category="additional"><span class="zone-label">Making additional points:</span></div>
+          <div class="drop-zone" data-category="result"><span class="zone-label">Introducing a result:</span></div>
+          <div class="drop-zone" data-category="concluding"><span class="zone-label">Concluding:</span></div>
         </div>
       </div>
       <div class="btn-row">
@@ -669,12 +666,12 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 7: ARTICLES DROPDOWN (Fixed) ===== -->
+    <!-- ===== SLIDE 7: ARTICLES DROPDOWN (Continuous paragraph) ===== -->
     <section class="slide">
       <div class="slide-number">Slide 7</div>
       <h2>Articles Review</h2>
       <p style="font-size: 1.05rem; margin-bottom: 8px;">Select the correct article (a, an, the, or no article) for each gap. The first two have been done for you.</p>
-      <div id="articlesDropdown"></div>
+      <div id="articlesDropdown" class="article-text"></div>
       <div class="btn-row">
         <button class="btn btn-check" id="checkArticles">Check Answers</button>
         <button class="btn btn-reset" id="resetArticles">Reset</button>
@@ -686,7 +683,7 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 8: KEY WORD TRANSFORMATION (Fixed) ===== -->
+    <!-- ===== SLIDE 8: KEY WORD TRANSFORMATION (Updated) ===== -->
     <section class="slide">
       <div class="slide-number">Slide 8</div>
       <h2>Key Word Transformation</h2>
@@ -703,11 +700,11 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 9: WORD FORMATION (No scroll, 2 columns) ===== -->
+    <!-- ===== SLIDE 9: WORD FORMATION ===== -->
     <section class="slide">
       <div class="slide-number">Slide 9</div>
       <h2>Word Formation</h2>
-      <p style="font-size: 1.05rem; margin-bottom: 8px;">Use the word given in CAPITALS to form a word that fits in the space. The root word prompts are in capitals, but your answers should be in lower case.</p>
+      <p style="font-size: 1.05rem; margin-bottom: 8px;">Use the word given in CAPITALS to form a word that fits in the space. Your answers should be in lower case.</p>
       <div style="background: var(--al-cream); padding: 14px 18px; border-radius: 8px; font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px; overflow: visible;">
         <p style="font-weight: 600; color: var(--al-baltic-blue);">Michael Hart</p>
         <p>Michael Hart (1947–2011) was the <strong>(0) FOUNDER</strong> (FOUND) of Project Gutenberg, one of the <strong>(1) _____</strong> (EARLY) and longest-lasting online literary projects. His life's aim was to digitise the world's literature and make it freely available online. As a result of his work, he is widely considered to be the <strong>(2) _____</strong> (INVENT) of the eBook.</p>
@@ -929,7 +926,7 @@
       nextBtns.forEach(function(b) { b.disabled = (current === total - 1); });
     }
 
-    // ===== DRAG AND DROP LINKING DEVICES =====
+    // ===== DRAG AND DROP LINKING DEVICES (Expanded) =====
     function initDragDrop() {
       var dragItems = document.querySelectorAll('#dragItems > div');
       var dropZones = document.querySelectorAll('.drop-zone');
@@ -950,24 +947,40 @@
 
       function resetDragDrop() {
         var dragContainer = document.getElementById('dragItems');
-        var items = document.querySelectorAll('#dragItems > div, .drop-zone.filled');
+        var items = document.querySelectorAll('#dragItems > div, .drop-zone .dropped-item');
         items.forEach(function(item) {
-          if (item.classList.contains('filled')) {
+          if (item.classList.contains('dropped-item')) {
             var dropZone = item.parentElement;
             if (dropZone.classList.contains('drop-zone')) {
-              dropZone.classList.remove('filled');
-              dropZone.textContent = dropZone.dataset.category.charAt(0).toUpperCase() + dropZone.dataset.category.slice(1);
               var dragContainer = document.getElementById('dragItems');
               dragContainer.appendChild(item);
-              item.classList.remove('correct', 'incorrect');
+              item.classList.remove('correct', 'incorrect', 'dropped-item');
               item.style.display = 'block';
               item.setAttribute('draggable', 'true');
+              // Remove the item from the drop zone's child list
+              dropZone.removeChild(item);
             }
           }
         });
         dropZones.forEach(function(zone) {
           zone.classList.remove('filled', 'correct', 'incorrect');
-          zone.textContent = zone.dataset.category.charAt(0).toUpperCase() + zone.dataset.category.slice(1);
+          // Restore the label if it was removed
+          var label = zone.querySelector('.zone-label');
+          if (!label) {
+            // Recreate the label if missing
+            var newLabel = document.createElement('span');
+            newLabel.className = 'zone-label';
+            var category = zone.dataset.category;
+            var labels = {
+              'one side': 'Introducing one side:',
+              'other side': 'Introducing the other side:',
+              'additional': 'Making additional points:',
+              'result': 'Introducing a result:',
+              'concluding': 'Concluding:'
+            };
+            newLabel.textContent = labels[category] || category + ':';
+            zone.appendChild(newLabel);
+          }
         });
         document.querySelectorAll('#dragItems > div').forEach(function(item) {
           item.classList.remove('correct', 'incorrect');
@@ -983,8 +996,8 @@
         var errors = [];
 
         dropZones.forEach(function(zone) {
-          var filledItems = zone.querySelectorAll('div');
-          filledItems.forEach(function(item) {
+          var droppedItems = zone.querySelectorAll('.dropped-item');
+          droppedItems.forEach(function(item) {
             total++;
             var device = item.dataset.device;
             var category = zone.dataset.category;
@@ -1048,15 +1061,22 @@
           var device = e.dataTransfer.getData('text/plain');
           var dragItem = document.querySelector('#dragItems > div[data-device="' + device + '"]');
           if (dragItem) {
-            if (this.querySelector('div')) {
-              return;
-            }
+            // Remove from original parent
             dragItem.remove();
-            this.appendChild(dragItem);
+            // Create a copy to place in drop zone
+            var clone = dragItem.cloneNode(true);
+            clone.classList.add('dropped-item');
+            clone.setAttribute('draggable', 'false');
+            // Remove the zone-label if it exists
+            var label = this.querySelector('.zone-label');
+            if (label) {
+              // Keep the label and insert the item after it
+              this.appendChild(clone);
+            } else {
+              this.appendChild(clone);
+            }
             this.classList.add('filled');
-            this.textContent = '';
-            this.appendChild(dragItem);
-            dragItem.style.display = 'block';
+            // Remove the original from DOM (already removed)
           }
         });
       });
@@ -1157,41 +1177,44 @@
       });
     }
 
-    // ===== ARTICLES DROPDOWN (Fixed) =====
+    // ===== ARTICLES DROPDOWN (Continuous paragraph) =====
     function initArticles() {
       var container = document.getElementById('articlesDropdown');
       var articleData = [
-        { num: 3, text: 'Others, however, prefer', options: ['a', 'the', ''], correct: '' },
-        { num: 4, text: 'stability and avoid change as much as possible. One advantage of altering', options: ['a', 'the', ''], correct: 'the' },
-        { num: 5, text: 'way you do things is that it gives you the chance to make improvements. It enables you to become', options: ['a', 'the', ''], correct: 'a' },
-        { num: 6, text: 'better student, employee or person. It helps you decide which is', options: ['a', 'the', ''], correct: 'the' },
-        { num: 7, text: 'best one. Another positive aspect is that it adds variety to', options: ['a', 'the', ''], correct: '' },
-        { num: 8, text: 'life. This also helps to make you', options: ['a', 'the', ''], correct: '' },
-        { num: 9, text: 'more dynamic and interesting. On', options: ['a', 'the', ''], correct: 'the' },
-        { num: 10, text: 'negative side, change can be stressful. For this reason,', options: ['a', 'the', ''], correct: '' },
-        { num: 11, text: 'many people like to stay in same place all the time. They prefer familiarity to uncertainty.', options: ['a', 'the', ''], correct: '' },
-        { num: 12, text: 'In', options: ['a', 'the', ''], correct: '' },
-        { num: 13, text: 'conclusion, I think it is easier to introduce changes when you are young.', options: ['a', 'the', ''], correct: '' },
-        { num: 14, text: 'Older you are, the more', options: ['a', 'the', ''], correct: '' },
-        { num: 15, text: 'effort it takes to do things differently.', options: ['a', 'the', ''], correct: '' }
+        { gap: 3, before: 'Others, however, prefer', options: ['a', 'the', ''], correct: '' },
+        { gap: 4, before: 'stability and avoid change as much as possible. One advantage of altering', options: ['a', 'the', ''], correct: 'the' },
+        { gap: 5, before: 'way you do things is that it gives you the chance to make improvements. It enables you to become', options: ['a', 'the', ''], correct: 'a' },
+        { gap: 6, before: 'better student, employee or person. It helps you decide which is', options: ['a', 'the', ''], correct: 'the' },
+        { gap: 7, before: 'best one. Another positive aspect is that it adds variety to', options: ['a', 'the', ''], correct: '' },
+        { gap: 8, before: 'life. This also helps to make you', options: ['a', 'the', ''], correct: '' },
+        { gap: 9, before: 'more dynamic and interesting. On', options: ['a', 'the', ''], correct: 'the' },
+        { gap: 10, before: 'negative side, change can be stressful. For this reason,', options: ['a', 'the', ''], correct: '' },
+        { gap: 11, before: 'many people like to stay in same place all the time. They prefer familiarity to uncertainty. In', options: ['a', 'the', ''], correct: '' },
+        { gap: 12, before: 'conclusion, I think it is easier to introduce changes when you are young.', options: ['a', 'the', ''], correct: '' },
+        { gap: 13, before: 'Older you are, the more', options: ['a', 'the', ''], correct: '' },
+        { gap: 14, before: 'effort it takes to do things differently.', options: ['a', 'the', ''], correct: '' }
       ];
 
       var selects = [];
       container.innerHTML = '';
 
+      // Build the continuous paragraph with inline dropdowns
+      var fullText = '';
+
+      // The first two sentences (0,1,2) are fixed
+      var fixedStart = '1 Is it always a good idea to introduce changes into our lives? 2 Some people feel that change is positive and enjoy doing things in the different ways. ';
+      var textSpan = document.createElement('span');
+      textSpan.innerHTML = fixedStart;
+      container.appendChild(textSpan);
+
+      // Build the rest with dropdowns
       articleData.forEach(function(item, idx) {
-        var wrapper = document.createElement('div');
-        wrapper.className = 'article-line';
+        // Add the text before the gap
+        var beforeSpan = document.createElement('span');
+        beforeSpan.textContent = item.before + ' ';
+        container.appendChild(beforeSpan);
 
-        var numLabel = document.createElement('span');
-        numLabel.className = 'num-label';
-        numLabel.textContent = item.num + '.';
-        wrapper.appendChild(numLabel);
-
-        var textSpan = document.createElement('span');
-        textSpan.textContent = item.text + ' ';
-        wrapper.appendChild(textSpan);
-
+        // Add the dropdown
         var select = document.createElement('select');
         select.id = 'art_' + idx;
 
@@ -1212,9 +1235,12 @@
         });
 
         selects.push({ select: select, correct: item.correct });
-        wrapper.appendChild(select);
+        container.appendChild(select);
 
-        container.appendChild(wrapper);
+        // Add a space after the dropdown
+        var spaceSpan = document.createElement('span');
+        spaceSpan.textContent = ' ';
+        container.appendChild(spaceSpan);
       });
 
       document.getElementById('checkArticles').addEventListener('click', function() {
@@ -1246,16 +1272,16 @@
       });
     }
 
-    // ===== KEY WORD TRANSFORMATION (Fixed) =====
+    // ===== KEY WORD TRANSFORMATION (Updated) =====
     function initKWT() {
       var container = document.getElementById('keyWordTransform');
       var prompts = [
-        { text: '1. The new version of this phone isn\'t nearly as big as I thought it would be.<br><strong>MUCH</strong><br>The new version of this phone _____ I thought it would be.', correct: 'is much smaller than' },
-        { text: '2. This is easily the most boring game I\'ve downloaded recently.<br><strong>ENJOYABLE</strong><br>This is by _____ game I\'ve downloaded recently.', correct: 'far the least enjoyable' },
-        { text: '3. There are fewer teachers in my school than there were last year.<br><strong>NOT</strong><br>There _____ teachers in my school as there were last year.', correct: 'are not as many' },
-        { text: '4. If you work harder now, you won\'t have to do so much later.<br><strong>THE</strong><br>The harder _____, the less you\'ll have to do later.', correct: 'you work now' },
-        { text: '5. Lucy is as tall as her mother.<br><strong>HEIGHT</strong><br>Lucy _____ her mother.', correct: 'is the same height as' },
-        { text: '6. Technology has had a bigger effect on our lives than we could ever have imagined.<br><strong>MORE</strong><br>Technology has _____ a difference to our lives than we could ever have imagined.', correct: 'made more of' }
+        { text: '1. The new version of this phone isn\'t nearly as big as I thought it would be.<br><strong>MUCH SMALL</strong><br>The new version of this phone _____ I thought it would be.', correct: 'is much smaller than' },
+        { text: '2. This is easily the most boring game I\'ve downloaded recently.<br><strong>FAR ENJOY</strong><br>This is by _____ game I\'ve downloaded recently.', correct: 'far the least enjoyable' },
+        { text: '3. There are fewer teachers in my school than there were last year.<br><strong>NOT MANY</strong><br>There _____ teachers in my school as there were last year.', correct: 'are not as many' },
+        { text: '4. If you work harder now, you won\'t have to do so much later.<br><strong>WORK</strong><br>The harder _____, the less you\'ll have to do later.', correct: 'you work now' },
+        { text: '5. Lucy is as tall as her mother.<br><strong>IS HEIGHT</strong><br>Lucy _____ her mother.', correct: 'is the same height as' },
+        { text: '6. Technology has had a bigger effect on our lives than we could ever have imagined.<br><strong>MAKE MORE</strong><br>Technology has _____ a difference to our lives than we could ever have imagined.', correct: 'made more of' }
       ];
       var inputs = [];
 
@@ -1324,7 +1350,7 @@
       });
     }
 
-    // ===== WORD FORMATION (No scroll, 2 columns) =====
+    // ===== WORD FORMATION =====
     function initWF() {
       var container = document.getElementById('wordFormation');
       var correctAnswers = ['earliest', 'inventor', 'researchers', 'existence', 'equipment', 'collection', 'assistant', 'responsibilities'];
