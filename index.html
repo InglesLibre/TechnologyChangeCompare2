@@ -308,6 +308,58 @@
       background: #fdd0d0;
     }
 
+    /* ===== Article Dropdown ===== */
+    .article-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .article-line select {
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 2px solid var(--al-warm-grey);
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: var(--al-white);
+      min-width: 100px;
+    }
+    .article-line select.correct {
+      border-color: var(--al-baltic-blue);
+      background: #e6f0f5;
+    }
+    .article-line select.incorrect {
+      border-color: var(--al-pure-red);
+      background: #fdd0d0;
+    }
+    .article-line .num-label {
+      font-weight: 600;
+      color: var(--al-baltic-blue);
+      min-width: 28px;
+    }
+
+    /* ===== Word Formation Grid ===== */
+    .wf-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 20px;
+      margin: 10px 0;
+    }
+    .wf-grid .gap-item {
+      margin-bottom: 4px;
+    }
+    .wf-grid .gap-item input {
+      min-width: 120px;
+      padding: 4px 8px;
+      font-size: 0.95rem;
+    }
+    .wf-grid .gap-item span {
+      font-size: 0.95rem;
+    }
+
     /* ===== Buttons ===== */
     .btn-row {
       display: flex;
@@ -439,8 +491,8 @@
       .slide-number { font-size: 0.7rem; }
       .writing-link-box a { font-size: 1rem; }
       .drag-container { flex-direction: column; }
-      .drag-items { flex: 1; }
-      .drop-zones { flex: 1; }
+      .wf-grid { grid-template-columns: 1fr; }
+      .article-line { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -617,7 +669,7 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 7: ARTICLES DROPDOWN ===== -->
+    <!-- ===== SLIDE 7: ARTICLES DROPDOWN (Fixed) ===== -->
     <section class="slide">
       <div class="slide-number">Slide 7</div>
       <h2>Articles Review</h2>
@@ -634,7 +686,7 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 8: KEY WORD TRANSFORMATION ===== -->
+    <!-- ===== SLIDE 8: KEY WORD TRANSFORMATION (Fixed) ===== -->
     <section class="slide">
       <div class="slide-number">Slide 8</div>
       <h2>Key Word Transformation</h2>
@@ -651,17 +703,17 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 9: WORD FORMATION ===== -->
+    <!-- ===== SLIDE 9: WORD FORMATION (No scroll, 2 columns) ===== -->
     <section class="slide">
       <div class="slide-number">Slide 9</div>
       <h2>Word Formation</h2>
       <p style="font-size: 1.05rem; margin-bottom: 8px;">Use the word given in CAPITALS to form a word that fits in the space. The root word prompts are in capitals, but your answers should be in lower case.</p>
-      <div style="background: var(--al-cream); padding: 14px 18px; border-radius: 8px; font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px; max-height: 220px; overflow-y: auto;">
+      <div style="background: var(--al-cream); padding: 14px 18px; border-radius: 8px; font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px; overflow: visible;">
         <p style="font-weight: 600; color: var(--al-baltic-blue);">Michael Hart</p>
         <p>Michael Hart (1947–2011) was the <strong>(0) FOUNDER</strong> (FOUND) of Project Gutenberg, one of the <strong>(1) _____</strong> (EARLY) and longest-lasting online literary projects. His life's aim was to digitise the world's literature and make it freely available online. As a result of his work, he is widely considered to be the <strong>(2) _____</strong> (INVENT) of the eBook.</p>
         <p>In 1971, Hart typed a copy of the United States Declaration of Independence into the computer at the University of Illinois, where he was a student. The internet was used only by academic and military <strong>(3) _____</strong> (RESEARCH): the World Wide Web would not come into <strong>(4) _____</strong> (EXIST) for another two decades. Yet Hart spent the next fifteen or so years typing up historic texts such as the works of Shakespeare and the American Constitution, using <strong>(5) _____</strong> (EQUIP) he had begged, borrowed or made himself. In 1987, with over 300 books in the online <strong>(6) _____</strong> (COLLECT), he took on an <strong>(7) _____</strong> (ASSIST), and together they recruited volunteers worldwide to help with typing and proofreading <strong>(8) _____</strong> (RESPONSIBLE). Project Gutenberg now offers more than 60,000 free eBooks to download in over 60 different languages.</p>
       </div>
-      <div id="wordFormation"></div>
+      <div id="wordFormation" class="wf-grid"></div>
       <div class="btn-row">
         <button class="btn btn-check" id="checkWF">Check Answers</button>
         <button class="btn btn-reset" id="resetWF">Reset</button>
@@ -796,9 +848,9 @@
         <li><strong>Speaking Part 4 (10 min):</strong> Discuss the questions in pairs.</li>
       </ol>
       <h4>Answers</h4>
-      <p><strong>Linking Devices (Slide 3):</strong> One side: On the one hand; Other side: On the other hand; Additional: In addition, Furthermore, Moreover; Result: Consequently, As a result; Concluding: On balance, To sum up</p>
+      <p><strong>Linking Devices (Slide 3):</strong> One side: On the one hand; Other side: On the other hand; Additional: In addition, Furthermore, Moreover, Firstly/Secondly/Finally; Result: Consequently, As a result; Concluding: On balance, To sum up</p>
       <p><strong>Comparisons Review (Slide 6):</strong> 1-the more, 2-most, 3-in, 4-many, 5-much, 6-so, 7-lot, 8-nearly, 9-by, 10-less</p>
-      <p><strong>Articles (Slide 7):</strong> 3-(no article), 4-the, 5-a, 6-the, 7-(no article), 8-(no article), 9-the, 10-(no article), 11-(no article), 12-(no article), 13-The, 13-(no article)</p>
+      <p><strong>Articles (Slide 7):</strong> 3-(no article), 4-the, 5-a, 6-the, 7-(no article), 8-(no article), 9-the, 10-(no article), 11-(no article), 12-(no article), 13-The (first gap), (no article) (second gap)</p>
       <p><strong>Key Word Transformation (Slide 8):</strong> 1-is much smaller than, 2-far the least enjoyable, 3-are not as/so many, 4-you work now, the less, 5-is the same height as, 6-made more of</p>
       <p><strong>Word Formation (Slide 9):</strong> 1-earliest, 2-inventor, 3-researchers, 4-existence, 5-equipment, 6-collection, 7-assistant, 8-responsibilities</p>
       <h4>Checking Questions</h4>
@@ -883,57 +935,46 @@
       var dropZones = document.querySelectorAll('.drop-zone');
       var feedback = document.getElementById('dragDropFeedback');
 
-      // Store correct categories
       var correctMap = {
         'on the one hand': 'one side',
         'on the other hand': 'other side',
         'in addition': 'additional',
         'furthermore': 'additional',
         'moreover': 'additional',
+        'firstly': 'additional',
         'consequently': 'result',
         'as a result': 'result',
         'on balance': 'concluding',
-        'to sum up': 'concluding',
-        'firstly': 'additional'
+        'to sum up': 'concluding'
       };
 
-      // Store which items have been dropped
-      var droppedItems = {};
-
       function resetDragDrop() {
-        // Return all items to drag-items container
         var dragContainer = document.getElementById('dragItems');
         var items = document.querySelectorAll('#dragItems > div, .drop-zone.filled');
         items.forEach(function(item) {
           if (item.classList.contains('filled')) {
-            // Remove from drop zone and add back to drag items
             var dropZone = item.parentElement;
             if (dropZone.classList.contains('drop-zone')) {
               dropZone.classList.remove('filled');
               dropZone.textContent = dropZone.dataset.category.charAt(0).toUpperCase() + dropZone.dataset.category.slice(1);
-              // Add back to drag items
               var dragContainer = document.getElementById('dragItems');
               dragContainer.appendChild(item);
               item.classList.remove('correct', 'incorrect');
               item.style.display = 'block';
-              // Re-add draggable
               item.setAttribute('draggable', 'true');
             }
           }
         });
-        // Reset drop zones
         dropZones.forEach(function(zone) {
           zone.classList.remove('filled', 'correct', 'incorrect');
           zone.textContent = zone.dataset.category.charAt(0).toUpperCase() + zone.dataset.category.slice(1);
         });
-        // Reset drag items
         document.querySelectorAll('#dragItems > div').forEach(function(item) {
           item.classList.remove('correct', 'incorrect');
           item.style.display = 'block';
           item.setAttribute('draggable', 'true');
         });
         feedback.innerHTML = '';
-        droppedItems = {};
       }
 
       function checkDragDrop() {
@@ -941,7 +982,6 @@
         var total = 0;
         var errors = [];
 
-        // Check all drop zones
         dropZones.forEach(function(zone) {
           var filledItems = zone.querySelectorAll('div');
           filledItems.forEach(function(item) {
@@ -960,7 +1000,6 @@
           });
         });
 
-        // Check any items still in drag area
         var remainingItems = document.querySelectorAll('#dragItems > div');
         if (remainingItems.length > 0) {
           remainingItems.forEach(function(item) {
@@ -985,7 +1024,6 @@
         }
       }
 
-      // Drag events
       dragItems.forEach(function(item) {
         item.addEventListener('dragstart', function(e) {
           e.dataTransfer.setData('text/plain', this.dataset.device);
@@ -1010,16 +1048,12 @@
           var device = e.dataTransfer.getData('text/plain');
           var dragItem = document.querySelector('#dragItems > div[data-device="' + device + '"]');
           if (dragItem) {
-            // Check if this zone already has an item
             if (this.querySelector('div')) {
-              return; // Zone already filled
+              return;
             }
-            // Remove from drag area
             dragItem.remove();
-            // Add to drop zone
             this.appendChild(dragItem);
             this.classList.add('filled');
-            // Update text content to show the device
             this.textContent = '';
             this.appendChild(dragItem);
             dragItem.style.display = 'block';
@@ -1027,7 +1061,6 @@
         });
       });
 
-      // Reset and check buttons
       document.getElementById('resetDragDrop').addEventListener('click', resetDragDrop);
       document.getElementById('checkDragDrop').addEventListener('click', checkDragDrop);
     }
@@ -1124,109 +1157,75 @@
       });
     }
 
-    // ===== ARTICLES DROPDOWN =====
+    // ===== ARTICLES DROPDOWN (Fixed) =====
     function initArticles() {
       var container = document.getElementById('articlesDropdown');
-      var sentences = [
-        { num: 3, text: 'Others, however, prefer (a / the / - ) stability and avoid change as much as possible.', correct: '-' },
-        { num: 4, text: 'One advantage of altering (a / the / - ) way you do things is that it gives you the chance to make improvements.', correct: 'the' },
-        { num: 5, text: 'It enables you to become (a / the / - ) better student, employee or person.', correct: 'a' },
-        { num: 6, text: 'It helps you decide which is (a / the / - ) best one.', correct: 'the' },
-        { num: 7, text: 'Another positive aspect is that it adds variety to (a / the / - ) life.', correct: '-' },
-        { num: 8, text: 'This also helps to make you (a / the / - ) more dynamic and interesting.', correct: '-' },
-        { num: 9, text: 'On (a / the / - ) negative side, change can be stressful.', correct: 'the' },
-        { num: 10, text: 'For this reason, (a / the / - ) many people like to stay in same place all the time.', correct: '-' },
-        { num: 11, text: 'They prefer familiarity to uncertainty.', correct: '-' },
-        { num: 12, text: 'In (a / the / - ) conclusion, I think it is easier to introduce changes when you are young.', correct: '-' },
-        { num: 13, text: '(A / The / - ) older you are, the more (a / the / - ) effort it takes to do things differently.', correct: ['The', '-'] }
+      var articleData = [
+        { num: 3, text: 'Others, however, prefer', options: ['a', 'the', ''], correct: '' },
+        { num: 4, text: 'stability and avoid change as much as possible. One advantage of altering', options: ['a', 'the', ''], correct: 'the' },
+        { num: 5, text: 'way you do things is that it gives you the chance to make improvements. It enables you to become', options: ['a', 'the', ''], correct: 'a' },
+        { num: 6, text: 'better student, employee or person. It helps you decide which is', options: ['a', 'the', ''], correct: 'the' },
+        { num: 7, text: 'best one. Another positive aspect is that it adds variety to', options: ['a', 'the', ''], correct: '' },
+        { num: 8, text: 'life. This also helps to make you', options: ['a', 'the', ''], correct: '' },
+        { num: 9, text: 'more dynamic and interesting. On', options: ['a', 'the', ''], correct: 'the' },
+        { num: 10, text: 'negative side, change can be stressful. For this reason,', options: ['a', 'the', ''], correct: '' },
+        { num: 11, text: 'many people like to stay in same place all the time. They prefer familiarity to uncertainty.', options: ['a', 'the', ''], correct: '' },
+        { num: 12, text: 'In', options: ['a', 'the', ''], correct: '' },
+        { num: 13, text: 'conclusion, I think it is easier to introduce changes when you are young.', options: ['a', 'the', ''], correct: '' },
+        { num: 14, text: 'Older you are, the more', options: ['a', 'the', ''], correct: '' },
+        { num: 15, text: 'effort it takes to do things differently.', options: ['a', 'the', ''], correct: '' }
       ];
-      var selects = [];
 
+      var selects = [];
       container.innerHTML = '';
 
-      sentences.forEach(function(s, idx) {
+      articleData.forEach(function(item, idx) {
         var wrapper = document.createElement('div');
-        wrapper.className = 'gap-item';
+        wrapper.className = 'article-line';
 
-        var numSpan = document.createElement('span');
-        numSpan.textContent = s.num + '. ';
-        numSpan.style.fontWeight = '600';
-        numSpan.style.color = 'var(--al-baltic-blue)';
-        wrapper.appendChild(numSpan);
+        var numLabel = document.createElement('span');
+        numLabel.className = 'num-label';
+        numLabel.textContent = item.num + '.';
+        wrapper.appendChild(numLabel);
 
-        // Replace options in text with dropdowns
-        var textParts = s.text.split('(');
-        var fullText = '';
-        for (var i = 0; i < textParts.length; i++) {
-          if (i > 0) {
-            // Find the closing bracket
-            var optionPart = textParts[i].split(')');
-            var options = optionPart[0].split(' / ');
-            var restText = optionPart.slice(1).join(')');
+        var textSpan = document.createElement('span');
+        textSpan.textContent = item.text + ' ';
+        wrapper.appendChild(textSpan);
 
-            var select = document.createElement('select');
-            select.id = 'art_' + idx + '_' + i;
+        var select = document.createElement('select');
+        select.id = 'art_' + idx;
 
-            var opt = document.createElement('option');
-            opt.value = '';
-            opt.textContent = 'Select...';
-            select.appendChild(opt);
+        var opt = document.createElement('option');
+        opt.value = '';
+        opt.textContent = 'Select...';
+        select.appendChild(opt);
 
-            var optionValues = [];
-            options.forEach(function(o) {
-              var val = o.trim();
-              if (val === '-') val = '';
-              optionValues.push(val);
-              var opt2 = document.createElement('option');
-              opt2.value = val;
-              opt2.textContent = val === '' ? '(no article)' : val;
-              select.appendChild(opt2);
-            });
+        var optionValues = [];
+        item.options.forEach(function(o) {
+          var val = o;
+          if (val === '') val = '';
+          optionValues.push(val);
+          var opt2 = document.createElement('option');
+          opt2.value = val;
+          opt2.textContent = val === '' ? '(no article)' : val;
+          select.appendChild(opt2);
+        });
 
-            selects.push({ select: select, expected: s.correct });
-            wrapper.appendChild(select);
-
-            // Add the rest of the text
-            if (restText) {
-              var span2 = document.createElement('span');
-              span2.textContent = restText;
-              wrapper.appendChild(span2);
-            }
-
-            // Skip the rest of this iteration
-            // We need to continue from this point
-          } else {
-            var span1 = document.createElement('span');
-            span1.textContent = textParts[i];
-            wrapper.appendChild(span1);
-          }
-        }
+        selects.push({ select: select, correct: item.correct });
+        wrapper.appendChild(select);
 
         container.appendChild(wrapper);
       });
 
       document.getElementById('checkArticles').addEventListener('click', function() {
         var correct = 0;
-        selects.forEach(function(item, idx) {
-          var expected = item.expected;
+        selects.forEach(function(item) {
           var selected = item.select.value;
-          if (Array.isArray(expected)) {
-            // Special case for line 13 with two blanks
-            // We'll handle this by checking each dropdown separately
-            // For simplicity, we'll just check the first one
-            if (selected === expected[0] || selected === expected[1]) {
-              correct++;
-              item.select.className = 'correct';
-            } else {
-              item.select.className = 'incorrect';
-            }
+          if (selected === item.correct) {
+            correct++;
+            item.select.className = 'correct';
           } else {
-            if (selected === expected) {
-              correct++;
-              item.select.className = 'correct';
-            } else {
-              item.select.className = 'incorrect';
-            }
+            item.select.className = 'incorrect';
           }
         });
         var fb = document.getElementById('articlesFeedback');
@@ -1247,7 +1246,7 @@
       });
     }
 
-    // ===== KEY WORD TRANSFORMATION =====
+    // ===== KEY WORD TRANSFORMATION (Fixed) =====
     function initKWT() {
       var container = document.getElementById('keyWordTransform');
       var prompts = [
@@ -1286,9 +1285,15 @@
         inputs.forEach(function(inp, idx) {
           var answer = inp.value.trim().toLowerCase();
           var expected = prompts[idx].correct.toLowerCase();
-          // Handle multiple possible answers
           if (idx === 2) {
             if (answer === 'are not as many' || answer === 'are not so many') {
+              correct++;
+              inp.className = 'correct';
+            } else {
+              inp.className = 'incorrect';
+            }
+          } else if (idx === 3) {
+            if (answer === 'you work now') {
               correct++;
               inp.className = 'correct';
             } else {
@@ -1319,7 +1324,7 @@
       });
     }
 
-    // ===== WORD FORMATION =====
+    // ===== WORD FORMATION (No scroll, 2 columns) =====
     function initWF() {
       var container = document.getElementById('wordFormation');
       var correctAnswers = ['earliest', 'inventor', 'researchers', 'existence', 'equipment', 'collection', 'assistant', 'responsibilities'];
@@ -1340,8 +1345,8 @@
         var input = document.createElement('input');
         input.type = 'text';
         input.id = 'wf_' + i;
-        input.placeholder = 'Type your answer (lower case)...';
-        input.style.minWidth = '180px';
+        input.placeholder = 'Type your answer...';
+        input.style.minWidth = '140px';
         inputs.push(input);
         wrapper.appendChild(input);
 
