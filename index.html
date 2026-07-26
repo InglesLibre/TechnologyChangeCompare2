@@ -1,3 +1,6 @@
+## Technology and Change Part 2 - Complete Slide Deck (Final Fixed)
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -313,6 +316,15 @@
       color: var(--al-baltic-blue);
       margin-right: 8px;
     }
+    .drop-zone .dropped-item {
+      background: var(--al-white);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--al-warm-grey);
+      font-weight: 500;
+      color: var(--al-text-dark);
+      cursor: default;
+    }
 
     /* ===== Article Dropdown ===== */
     .article-text {
@@ -546,11 +558,11 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 3: DRAG AND DROP LINKING DEVICES (Expanded) ===== -->
+    <!-- ===== SLIDE 3: DRAG AND DROP LINKING DEVICES (Fixed) ===== -->
     <section class="slide">
       <div class="slide-number">Slide 3</div>
       <h2>Linking Devices: Drag and Drop</h2>
-      <p style="font-size: 1.05rem; margin-bottom: 8px;">Drag each linking device to the correct category.</p>
+      <p style="font-size: 1.05rem; margin-bottom: 8px;">Drag each linking device to the correct category. Each category accepts multiple items.</p>
       <div id="dragDropContainer" class="drag-container">
         <div class="drag-items" id="dragItems">
           <div draggable="true" data-device="in addition">In addition (to this)</div>
@@ -666,7 +678,7 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 7: ARTICLES DROPDOWN (Continuous paragraph) ===== -->
+    <!-- ===== SLIDE 7: ARTICLES DROPDOWN ===== -->
     <section class="slide">
       <div class="slide-number">Slide 7</div>
       <h2>Articles Review</h2>
@@ -683,7 +695,7 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 8: KEY WORD TRANSFORMATION (Updated) ===== -->
+    <!-- ===== SLIDE 8: KEY WORD TRANSFORMATION ===== -->
     <section class="slide">
       <div class="slide-number">Slide 8</div>
       <h2>Key Word Transformation</h2>
@@ -926,7 +938,7 @@
       nextBtns.forEach(function(b) { b.disabled = (current === total - 1); });
     }
 
-    // ===== DRAG AND DROP LINKING DEVICES (Expanded) =====
+    // ===== DRAG AND DROP LINKING DEVICES (Fixed) =====
     function initDragDrop() {
       var dragItems = document.querySelectorAll('#dragItems > div');
       var dropZones = document.querySelectorAll('.drop-zone');
@@ -946,28 +958,22 @@
       };
 
       function resetDragDrop() {
-        var dragContainer = document.getElementById('dragItems');
-        var items = document.querySelectorAll('#dragItems > div, .drop-zone .dropped-item');
-        items.forEach(function(item) {
-          if (item.classList.contains('dropped-item')) {
-            var dropZone = item.parentElement;
-            if (dropZone.classList.contains('drop-zone')) {
-              var dragContainer = document.getElementById('dragItems');
-              dragContainer.appendChild(item);
-              item.classList.remove('correct', 'incorrect', 'dropped-item');
-              item.style.display = 'block';
-              item.setAttribute('draggable', 'true');
-              // Remove the item from the drop zone's child list
-              dropZone.removeChild(item);
-            }
-          }
+        // Move all dropped items back to the drag items container
+        var droppedItems = document.querySelectorAll('.dropped-item');
+        droppedItems.forEach(function(item) {
+          var dragContainer = document.getElementById('dragItems');
+          // Remove the dropped-item class and re-add draggable
+          item.classList.remove('dropped-item', 'correct', 'incorrect');
+          item.setAttribute('draggable', 'true');
+          dragContainer.appendChild(item);
         });
+
+        // Reset all drop zones
         dropZones.forEach(function(zone) {
           zone.classList.remove('filled', 'correct', 'incorrect');
-          // Restore the label if it was removed
+          // Ensure the label is present
           var label = zone.querySelector('.zone-label');
           if (!label) {
-            // Recreate the label if missing
             var newLabel = document.createElement('span');
             newLabel.className = 'zone-label';
             var category = zone.dataset.category;
@@ -982,11 +988,14 @@
             zone.appendChild(newLabel);
           }
         });
+
+        // Reset any remaining drag items
         document.querySelectorAll('#dragItems > div').forEach(function(item) {
           item.classList.remove('correct', 'incorrect');
           item.style.display = 'block';
           item.setAttribute('draggable', 'true');
         });
+
         feedback.innerHTML = '';
       }
 
@@ -1037,6 +1046,7 @@
         }
       }
 
+      // Drag events
       dragItems.forEach(function(item) {
         item.addEventListener('dragstart', function(e) {
           e.dataTransfer.setData('text/plain', this.dataset.device);
@@ -1047,6 +1057,7 @@
         });
       });
 
+      // Drop zone events
       dropZones.forEach(function(zone) {
         zone.addEventListener('dragover', function(e) {
           e.preventDefault();
@@ -1061,22 +1072,24 @@
           var device = e.dataTransfer.getData('text/plain');
           var dragItem = document.querySelector('#dragItems > div[data-device="' + device + '"]');
           if (dragItem) {
+            // Remove the label if it's the first item being dropped
+            var label = this.querySelector('.zone-label');
+            if (label && !this.querySelector('.dropped-item')) {
+              // Keep the label, just add the item after it
+            }
             // Remove from original parent
             dragItem.remove();
-            // Create a copy to place in drop zone
+            // Create a clone to place in drop zone
             var clone = dragItem.cloneNode(true);
             clone.classList.add('dropped-item');
             clone.setAttribute('draggable', 'false');
-            // Remove the zone-label if it exists
-            var label = this.querySelector('.zone-label');
+            // Insert the clone after the label if it exists
             if (label) {
-              // Keep the label and insert the item after it
-              this.appendChild(clone);
+              this.insertBefore(clone, label.nextSibling);
             } else {
               this.appendChild(clone);
             }
             this.classList.add('filled');
-            // Remove the original from DOM (already removed)
           }
         });
       });
@@ -1177,7 +1190,7 @@
       });
     }
 
-    // ===== ARTICLES DROPDOWN (Continuous paragraph) =====
+    // ===== ARTICLES DROPDOWN =====
     function initArticles() {
       var container = document.getElementById('articlesDropdown');
       var articleData = [
@@ -1198,23 +1211,17 @@
       var selects = [];
       container.innerHTML = '';
 
-      // Build the continuous paragraph with inline dropdowns
-      var fullText = '';
-
-      // The first two sentences (0,1,2) are fixed
+      // Fixed start
       var fixedStart = '1 Is it always a good idea to introduce changes into our lives? 2 Some people feel that change is positive and enjoy doing things in the different ways. ';
       var textSpan = document.createElement('span');
       textSpan.innerHTML = fixedStart;
       container.appendChild(textSpan);
 
-      // Build the rest with dropdowns
       articleData.forEach(function(item, idx) {
-        // Add the text before the gap
         var beforeSpan = document.createElement('span');
         beforeSpan.textContent = item.before + ' ';
         container.appendChild(beforeSpan);
 
-        // Add the dropdown
         var select = document.createElement('select');
         select.id = 'art_' + idx;
 
@@ -1223,11 +1230,8 @@
         opt.textContent = 'Select...';
         select.appendChild(opt);
 
-        var optionValues = [];
         item.options.forEach(function(o) {
-          var val = o;
-          if (val === '') val = '';
-          optionValues.push(val);
+          var val = (o === '') ? '' : o;
           var opt2 = document.createElement('option');
           opt2.value = val;
           opt2.textContent = val === '' ? '(no article)' : val;
@@ -1237,7 +1241,6 @@
         selects.push({ select: select, correct: item.correct });
         container.appendChild(select);
 
-        // Add a space after the dropdown
         var spaceSpan = document.createElement('span');
         spaceSpan.textContent = ' ';
         container.appendChild(spaceSpan);
@@ -1272,7 +1275,7 @@
       });
     }
 
-    // ===== KEY WORD TRANSFORMATION (Updated) =====
+    // ===== KEY WORD TRANSFORMATION =====
     function initKWT() {
       var container = document.getElementById('keyWordTransform');
       var prompts = [
@@ -1430,3 +1433,4 @@
 </script>
 </body>
 </html>
+```
